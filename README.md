@@ -3,11 +3,25 @@ A Wunderlist CowSay integration
 
 # Installation
 
+Install composer dependencies
 ```
 composer install
 ```
 
-Copy `.env.default` to `.env`
+Create the .env for your Wunderlist credentials
+```
+cp .env.default .env
+```
+
+Install cowsay
+```
+npm install -g cowsay
+```
+
+Install lolcat
+```
+gem install lolcat
+```
 
 #Setting up Wunderlist .env
 
