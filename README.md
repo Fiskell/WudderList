@@ -44,9 +44,25 @@ Once you hit save you now have your client id
 
 ### Access Token
 
-run php wunder.php auth
+This part kind of sucks, but we can get through this together.
 
-You now have an access token ;)
+Install postman: `https://www.getpostman.com/`
+
+From there make a new request and click on the `Authorization` tab.
+
+Next select `OAuth 2.0` and choose one of the radio buttons (doesn't matter)
+
+Here fill in the following:
+```
+    Authorization URL: https://www.wunderlist.com/oauth/authorize
+    Access Token URL: https://www.wunderlist.com/oauth/access_token
+    Client ID: The client id from above
+```
+Hit get access token and it should ask you to log in, you will now have an access token.
+
+Note: The token may be either in the url, or in the headers tab under `X-Access-Token`
+
+Place your newly received token into your .env and get ready to celebrate
 
 ###List all WunderList Lists
 `./moo`
