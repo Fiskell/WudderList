@@ -1,6 +1,7 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "^6.1"
+        "guzzlehttp/guzzle": "^6.1",
+        "vlucas/phpdotenv": "^2.1"
     },
     "autoload": {
         "psr-4": {"WudderList\\": "src/"}
