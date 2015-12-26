@@ -1,5 +1,16 @@
 # WudderList
-A Wunderlist CowSay integration
+Stay focused on your top wunderlist task by having a colorful rainbow cow blurt it out.
+
+#Usage
+
+###List all WunderList Lists
+`./moo`
+
+You will need to select the id of the list you would like to display
+
+###Display the first position in the list
+`./moo {list_id}`
+
 
 # Installation
 
@@ -64,10 +75,3 @@ Note: The token may be either in the url, or in the headers tab under `X-Access-
 
 Place your newly received token into your .env and get ready to celebrate
 
-###List all WunderList Lists
-`./moo`
-
-You will need to select the id of the list you would like to display
-
-###Display the first position in the list
-`./moo {list_id}`
