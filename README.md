@@ -4,10 +4,10 @@ Stay focused on your top wunderlist task by having a colorful rainbow cow blurt 
 #Usage
 
 Output
-![ProjectImage](http://imgur.com/c8hdABT)
+![ProjectImage](http://i.imgur.com/c8hdABT.png)
 
 List it pulled from
-![ProjectImage](http://imgur.com/V4WJmUJ)
+![ProjectImage](http://i.imgur.com/V4WJmUJ.png)
 
 ###List all WunderList Lists
 `./moo`
