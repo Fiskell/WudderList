@@ -6,11 +6,11 @@ require __DIR__.'/vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$count = 0;
-(new \WudderList\WunderList())->getLists();
-exit();
+//(new \WudderList\WunderList())->getLists();
 while(true) {
-    (new BaseCommand())->cowsay('a' . $count);
-    sleep(2);
-    $count++;
+    $wunderlist = (new \WudderList\WunderList());
+    $taskId = $wunderlist->getFirstPosition(210225917);
+    $task = $wunderlist->getTask($taskId);
+    (new BaseCommand())->cowsay($task['title']);
+    sleep(10);
 }

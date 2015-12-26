@@ -34,4 +34,39 @@ class WunderList
             print_r($ex->getMessage());
         }
     }
+
+    public function getTask($taskId) {
+        try {
+            $lists = $this->client->request('GET', '/api/v1/tasks/' . $taskId, [
+                'headers' => $this->getDefaultHeaders()
+            ]);
+            $task = json_decode($lists->getBody()->getContents(), true);
+            return $task;
+        } catch (\Exception $ex) {
+            print_r($ex->getMessage());
+        }
+    }
+
+    public function getTaskPositions($listId) {
+        try {
+            $lists = $this->client->request('GET', '/api/v1/task_positions', [
+                'query' => [
+                    'list_id' => $listId,
+                ],
+                'headers' => $this->getDefaultHeaders()
+            ]);
+            $tasks = json_decode($lists->getBody()->getContents(), true);
+            return $tasks;
+        } catch (\Exception $ex) {
+            print_r($ex->getMessage());
+            return [];
+        }
+    }
+
+    public function getFirstPosition($listId) {
+        $taskPositionResponse = $this->getTaskPositions($listId);
+
+        // todo more error handling
+        return $taskPositionResponse[0]['values'][0];
+    }
 }
