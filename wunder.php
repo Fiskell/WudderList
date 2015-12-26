@@ -16,8 +16,8 @@ switch($command) {
     case 'list':
         $lists = $wunderlist->getLists();
         $string = "";
-        foreach($lists as $key => $name) {
-            $string .= "{$key} : {$name}\n";
+        foreach($lists as $name => $id) {
+            $string .= "{$id} : {$name}\n";
         }
         echo $string;
         break;

@@ -27,8 +27,9 @@ class WunderList
             $lists      = json_decode($lists->getBody()->getContents(), true);
             $listsNames = [];
             foreach ($lists as $list) {
-                $listsNames[$list['id']] = $list['title'];
+                $listsNames[strtolower($list['title'])] = $list['id'];
             }
+            ksort($listsNames);
             return $listsNames;
         } catch (\Exception $ex) {
             return [];
