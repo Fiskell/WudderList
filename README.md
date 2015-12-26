@@ -9,9 +9,11 @@ composer install
 
 Copy `.env.default` to `.env`
 
+#Setting up Wunderlist .env
+
 You will need to get a client id and an access token to fill in the .env
 
-## Client ID
+### Client ID
 
 Navigate to `https://developer.wunderlist.com/apps/new`
 This may require you to sign in.
@@ -26,16 +28,16 @@ Then fill in:
 
 Once you hit save you now have your client id
 
-## Access Token
+### Access Token
 
 run php wunder.php auth
 
 You now have an access token ;)
 
-#List all WunderList Lists
+###List all WunderList Lists
 `./moo`
 
 You will need to select the id of the list you would like to display
 
-#Display the first position in the list
+###Display the first position in the list
 `./moo {list_id}`
