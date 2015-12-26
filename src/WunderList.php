@@ -21,18 +21,25 @@ class WunderList
 
     public function getLists() {
         try {
-            $lists = $this->client->request('GET', '/api/v1/lists', [
+            $lists      = $this->client->request('GET', '/api/v1/lists', [
                 'headers' => $this->getDefaultHeaders()
             ]);
-            $lists = json_decode($lists->getBody()->getContents(), true);
+            $lists      = json_decode($lists->getBody()->getContents(), true);
             $listsNames = [];
-            foreach($lists as $list) {
+            foreach ($lists as $list) {
                 $listsNames[$list['id']] = $list['title'];
             }
-            print_r($listsNames);
+            return $listsNames;
         } catch (\Exception $ex) {
-            print_r($ex->getMessage());
+            return [];
         }
+    }
+
+    public function getPrimaryTaskTitle($listId) {
+        $taskId = $this->getFirstPosition($listId);
+        $task   = $this->getTask($taskId);
+
+        return $task['title'];
     }
 
     public function getTask($taskId) {
@@ -40,10 +47,12 @@ class WunderList
             $lists = $this->client->request('GET', '/api/v1/tasks/' . $taskId, [
                 'headers' => $this->getDefaultHeaders()
             ]);
-            $task = json_decode($lists->getBody()->getContents(), true);
+            $task  = json_decode($lists->getBody()->getContents(), true);
+
             return $task;
         } catch (\Exception $ex) {
             print_r($ex->getMessage());
+
             return [];
         }
     }
@@ -51,15 +60,17 @@ class WunderList
     public function getTaskPositions($listId) {
         try {
             $lists = $this->client->request('GET', '/api/v1/task_positions', [
-                'query' => [
+                'query'   => [
                     'list_id' => $listId,
                 ],
                 'headers' => $this->getDefaultHeaders()
             ]);
             $tasks = json_decode($lists->getBody()->getContents(), true);
+
             return $tasks;
         } catch (\Exception $ex) {
             print_r($ex->getMessage());
+
             return [];
         }
     }
