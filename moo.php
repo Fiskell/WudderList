@@ -7,6 +7,8 @@ $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 $count = 0;
+(new \WudderList\WunderList())->getLists();
+exit();
 while(true) {
     (new BaseCommand())->cowsay('a' . $count);
     sleep(2);
