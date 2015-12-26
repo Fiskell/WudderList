@@ -44,6 +44,7 @@ class WunderList
             return $task;
         } catch (\Exception $ex) {
             print_r($ex->getMessage());
+            return [];
         }
     }
 
