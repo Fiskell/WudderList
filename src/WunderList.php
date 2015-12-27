@@ -47,10 +47,11 @@ class WunderList
     public function getTask($taskId) {
         try {
             $lists = $this->client->request('GET', '/api/v1/tasks/' . $taskId, [
+                'query' => ['completed' => false],
                 'headers' => $this->getDefaultHeaders()
             ]);
             $task  = json_decode($lists->getBody()->getContents(), true);
-
+            print_r($task);
             return $task;
         } catch (\Exception $ex) {
             print_r($ex->getMessage());
@@ -64,10 +65,12 @@ class WunderList
             $lists = $this->client->request('GET', '/api/v1/task_positions', [
                 'query'   => [
                     'list_id' => $listId,
+                    'completed' => false,
                 ],
                 'headers' => $this->getDefaultHeaders()
             ]);
             $tasks = json_decode($lists->getBody()->getContents(), true);
+            print_r($tasks);
 
             return $tasks;
         } catch (\Exception $ex) {
