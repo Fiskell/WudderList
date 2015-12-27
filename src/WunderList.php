@@ -38,10 +38,37 @@ class WunderList
     }
 
     public function getPrimaryTaskTitle($listId) {
-        $taskId = $this->getFirstPosition($listId);
-        $task   = $this->getTask($taskId);
+        $taskPositionResponse = $this->getTaskPositions($listId);
 
-        return $task['title'];
+        $tasks = $this->getTasks($listId);
+
+        foreach($taskPositionResponse[0]['values'] as $taskId) {
+            $tmpTask = $tasks[$taskId];
+            if($tmpTask && !$tmpTask['completed']) {
+                return $tmpTask['title'];
+            }
+        }
+
+        return 'No task found, go take a break';
+    }
+
+    public function getTasks($listId) {
+        try {
+            $lists = $this->client->request('GET', '/api/v1/tasks', [
+                'query' => ['list_id' => $listId],
+                'headers' => $this->getDefaultHeaders()
+            ]);
+            $tasksResponse = json_decode($lists->getBody()->getContents(), true);
+            $tasks = [];
+            foreach($tasksResponse as $task) {
+                $tasks[$task['id']] = $task;
+            }
+            return $tasks;
+        } catch (\Exception $ex) {
+            print_r($ex->getMessage());
+
+            return [];
+        }
     }
 
     public function getTask($taskId) {
@@ -51,7 +78,7 @@ class WunderList
                 'headers' => $this->getDefaultHeaders()
             ]);
             $task  = json_decode($lists->getBody()->getContents(), true);
-            print_r($task);
+//            print_r($task);
             return $task;
         } catch (\Exception $ex) {
             print_r($ex->getMessage());
@@ -70,7 +97,7 @@ class WunderList
                 'headers' => $this->getDefaultHeaders()
             ]);
             $tasks = json_decode($lists->getBody()->getContents(), true);
-            print_r($tasks);
+//            print_r($tasks);
 
             return $tasks;
         } catch (\Exception $ex) {
@@ -80,10 +107,4 @@ class WunderList
         }
     }
 
-    public function getFirstPosition($listId) {
-        $taskPositionResponse = $this->getTaskPositions($listId);
-
-        // todo more error handling
-        return $taskPositionResponse[0]['values'][0];
-    }
 }

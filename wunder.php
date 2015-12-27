@@ -27,7 +27,6 @@ switch($command) {
         break;
     default:
         if(is_numeric($command)) {
-            echo $command;
             echo $wunderlist->getPrimaryTaskTitle($command);
         } else {
             echo "You must supply a list id";
