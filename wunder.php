@@ -12,10 +12,6 @@ if(count($argv) > 1) {
 }
 
 $wunderlist = new WunderList();
-//print_r($wunderlist->getLists());
-//print_r($wunderlist->getTaskPositions(229627536));
-//print_r($wunderlist->getTask($command));
-//exit();
 switch($command) {
     case 'list':
         $lists = $wunderlist->getLists();
