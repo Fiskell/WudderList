@@ -30,7 +30,7 @@ cp .env.default .env
 
 Install cowsay
 ```
-npm install -g cowsay
+brew install cowsay
 ```
 
 Install lolcat
