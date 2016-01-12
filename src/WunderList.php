@@ -43,6 +43,10 @@ class WunderList
         $tasks = $this->getTasks($listId);
 
         foreach($taskPositionResponse[0]['values'] as $taskId) {
+            if(!isset($tasks[$taskId])) {
+                continue;
+            }
+
             $tmpTask = $tasks[$taskId];
             if($tmpTask && !$tmpTask['completed']) {
                 return $tmpTask['title'];
